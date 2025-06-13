@@ -9,6 +9,7 @@ $eventos = json_decode($json, true);
 <head>
   <meta charset="UTF-8">
   <title>Eventos UniALFA</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
   <h1>Lista de Eventos</h1>
@@ -22,6 +23,7 @@ $eventos = json_decode($json, true);
     </div>
     <hr>
   <?php endforeach; ?>
+   <?php include('../templates/footer.php'); ?>
 
 </body>
 </html>

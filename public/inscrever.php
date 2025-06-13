@@ -19,6 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $inscricoes = json_decode($conteudo, true);
   } else {
     $inscricoes = [];
+
+  
   }
 
   // Adiciona a nova inscrição
@@ -83,5 +85,6 @@ if (!$eventoSelecionado) {
   </form>
 
   <p><a href="index.php">← Voltar à lista de eventos</a></p>
+   <?php include('../templates/footer.php'); ?>
 </body>
 </html>
