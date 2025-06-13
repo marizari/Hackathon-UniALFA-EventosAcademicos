@@ -66,8 +66,11 @@ if (!$eventoSelecionado) {
 <head>
   <meta charset="UTF-8">
   <title>Inscrição - <?php echo $eventoSelecionado['titulo']; ?></title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <?php include ('templates/header.php'); ?>
+    
   <h1>Inscrição no evento: <?php echo $eventoSelecionado['titulo']; ?></h1>
   <p><strong>Data:</strong> <?php echo $eventoSelecionado['data']; ?></p>
   <p><strong>Palestrante:</strong> <?php echo $eventoSelecionado['palestrante']; ?></p>

@@ -1,11 +1,12 @@
 <!-- Footer -->
+
     <footer class="footer" id="contato">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>UniALFA Eventos</h3>
                 <p>Plataforma de gerenciamento de eventos acadêmicos da Universidade ALFA.</p>
-                <p><strong>Endereço:</strong> Av. Paraná, 7327 - Zona III<br>
-                Umuarama - PR, CEP: 87501-190</p>
+                <p><strong>Endereço:</strong><a href="https://maps.app.goo.gl/VTFiup2eChij9WPC8" target="_blank"> Av. Paraná, 7327 - Zona III<br>
+                Umuarama - PR, CEP: 87501-190</a></p>
                 <p><strong>Email:</strong> eventos@unialfa.edu.br<br>
                 <strong>Telefone:</strong> (44) 3622-2562</p>
             </div>
