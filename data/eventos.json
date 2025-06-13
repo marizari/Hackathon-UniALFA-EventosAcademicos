@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "titulo": "Semana Acadêmica de TI",
+    "data": "2025-06-22",
+    "palestrante": "João Silva",
+    "descrição": "lorem"
+  },
+  {
+    "id": 2,
+    "titulo": "Palestra sobre IA",
+    "data": "2025-07-10",
+    "palestrante": "Maria Souza",
+    "descrição": "lorem"
+  }
+]
