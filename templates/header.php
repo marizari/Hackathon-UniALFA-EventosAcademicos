@@ -1,8 +1,9 @@
 
     <header class="header">
         <nav id="navbar">
-            <!--<a class="logo" href="public/assets/img/logop.png">logo</a>-->
-            <i class="logo" id="nav_logo">UniALFA</i>
+           <a href="#home" class="logo">
+            <img src="public/assets/img/logop.png" alt="Logo UniALFA" />
+            </a>
 
             <ul id="nav_list">
                 <li class="nav-item">
@@ -19,7 +20,8 @@
                 </li>
             </ul>
 
-            <button class="btn-default">Inscreva-se!</button>
+           <a href="../public/inscrever.php" class="btn-default">Inscreva-se!</a>
+
 
             <button>
                 <i class="fa-solid fa-bars"></i>
@@ -41,7 +43,7 @@
                    <a href="#portifolio">Portifólio</a> 
                 </li>
             </ul>
-            
+
             <button class="btn-default">Inscreva-se!</button>
 
         </div>

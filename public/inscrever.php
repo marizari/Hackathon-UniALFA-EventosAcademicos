@@ -1,38 +1,6 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $nome = $_POST['nome'];
-  $ra = $_POST['ra'];
-  $evento_id = $_POST['evento_id'];
 
-  // Criar um array com os dados do aluno
-  $novaInscricao = [
-    'evento_id' => $evento_id,
-    'nome' => $nome,
-    'ra' => $ra,
-    'data_inscricao' => date('Y-m-d H:i:s')
-  ];
-
-  // Verifica se já existe o arquivo com inscrições
-  $arquivo = 'inscricoes.json';
-  if (file_exists($arquivo)) {
-    $conteudo = file_get_contents($arquivo);
-    $inscricoes = json_decode($conteudo, true);
-  } else {
-    $inscricoes = [];
-
-  
-  }
-
-  // Adiciona a nova inscrição
-  $inscricoes[] = $novaInscricao;
-
-  // Salva de volta no arquivo
-  file_put_contents($arquivo, json_encode($inscricoes, JSON_PRETTY_PRINT));
-
-  // Exibe mensagem de sucesso
-  echo "<p style='color: green;'>Inscrição realizada com sucesso!</p>";
-}
-
+// Verifica se veio o ID via GET
 // Verifica se veio um ID de evento
 if (!isset($_GET['id'])) {
   echo "Evento não encontrado.";
@@ -41,11 +9,11 @@ if (!isset($_GET['id'])) {
 
 $id = $_GET['id'];
 
-// Carrega os eventos
+// Lê os eventos do JSON
 $json = file_get_contents('eventos.json');
 $eventos = json_decode($json, true);
 
-// Procura o evento pelo ID
+// Procura o evento
 $eventoSelecionado = null;
 foreach ($eventos as $evento) {
   if ($evento['id'] == $id) {
@@ -54,10 +22,49 @@ foreach ($eventos as $evento) {
   }
 }
 
-// Se não encontrou o evento
 if (!$eventoSelecionado) {
-  echo "Evento não encontrado.";
+  echo "Evento inválido.";
   exit;
+}
+
+// Se for POST, salva os dados
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $nome = $_POST['nome'];
+  $ra = $_POST['ra'];
+
+   // Criar um array com os dados do aluno
+  $novaInscricao = [
+    'evento_id' => $id,
+    'nome' => $nome,
+    'ra' => $ra,
+    'data_inscricao' => date('Y-m-d H:i:s')
+  ];
+
+  $arquivo = 'inscricoes.json';
+
+  if (file_exists($arquivo)) {
+    $conteudo = file_get_contents($arquivo);
+    $inscricoes = json_decode($conteudo, true);
+  } else {
+    $inscricoes = [];
+  }
+
+  // Verifica se já existe o arquivo com inscrições
+  $arquivo = 'inscricoes.json';
+  if (file_exists($arquivo)) {
+    $conteudo = file_get_contents($arquivo);
+    $inscricoes = json_decode($conteudo, true);
+  } else {
+    $inscricoes = [];
+  }
+
+  // Adiciona a nova inscrição
+  $inscricoes[] = $novaInscricao;
+
+    // Salva de volta no arquivo
+  file_put_contents($arquivo, json_encode($inscricoes, JSON_PRETTY_PRINT));
+
+  $mensagem = "Inscrição realizada com sucesso!";
 }
 ?>
 
@@ -66,29 +73,42 @@ if (!$eventoSelecionado) {
 <head>
   <meta charset="UTF-8">
   <title>Inscrição - <?php echo $eventoSelecionado['titulo']; ?></title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <?php include ('../templates/header.php'); ?>
 
-  <h1>Inscrição no evento: <?php echo $eventoSelecionado['titulo']; ?></h1>
-  <p><strong>Data:</strong> <?php echo $eventoSelecionado['data']; ?></p>
-  <p><strong>Palestrante:</strong> <?php echo $eventoSelecionado['palestrante']; ?></p>
-  <p><strong>Descrição:</strong> <?php echo $eventoSelecionado['descricao']; ?></p>
+  <?php include('../templates/header.php'); ?>
 
-  <form method="POST" action="inscrever.php?id=<?php echo $id; ?>">
-    <input type="hidden" name="evento_id" value="<?php echo $id; ?>">
-    <label for="nome">Nome:</label><br>
-    <input type="text" name="nome" required><br><br>
+  <main class="conteudo">
+    <h1>Inscrição no evento</h1>
 
-    <label for="ra">RA (matrícula):</label><br>
-    <input type="text" name="ra" required><br><br>
+    <div class="evento-card">
+      <h2><?php echo $eventoSelecionado['titulo']; ?></h2>
+      <p><strong>Data:</strong> <?php echo $eventoSelecionado['data']; ?></p>
+      <p><strong>Palestrante:</strong> <?php echo $eventoSelecionado['palestrante']; ?></p>
+      <p><strong>Descrição:</strong> <?php echo $eventoSelecionado['descricao'] ?? 'Evento sem descrição.'; ?></p>
+    </div>
 
-    <button type="submit">Confirmar Inscrição</button>
-  </form>
 
-  <p><a href="index.php">← Voltar à lista de eventos</a></p>
-   <?php include('../templates/footer.php'); ?>
+    <?php if (isset($mensagem)): ?>
+      <p style="color: green; font-weight: bold;"><?php echo $mensagem; ?></p>
+    <?php endif; ?>
+
+    <form method="POST" class="form-inscricao">
+      <label for="nome">Nome completo:</label><br>
+      <input type="text" name="nome" id="nome" required><br><br>
+
+      <label for="ra">RA (matrícula):</label><br>
+      <input type="text" name="ra" id="ra" required><br><br>
+
+      <button type="submit">Confirmar Inscrição</button>
+    </form>
+
+    <p><a href="index.php">← Voltar à lista de eventos</a></p>
+  </main>
+
+  <?php include('../templates/footer.php'); ?>
+
 </body>
 </html>
+
