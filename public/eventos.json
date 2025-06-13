@@ -6,10 +6,12 @@
     "tipo": "Workshop",
     "data": "2025-06-22",
     "hora": "19:00",
+    "duracao": "2h",
     "local": "Auditório Central",
     "palestrante": "João Silva",
     "foto": "joao.jpg"
   },
+
   {
     "id": 2,
     "titulo": "Inteligência Artificial e o Futuro",
@@ -17,6 +19,7 @@
     "tipo": "Palestra",
     "data": "2025-07-10",
     "hora": "20:30",
+    "duracao": "2h",
     "local": "Sala 204",
     "palestrante": "Maria Souza",
     "foto": "maria.jpg"
