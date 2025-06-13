@@ -4,5 +4,11 @@
         "nome": "Maria",
         "ra": "240017",
         "data_inscricao": "2025-06-13 05:31:28"
+    },
+    {
+        "evento_id": "2",
+        "nome": "Maria",
+        "ra": "240017",
+        "data_inscricao": "2025-06-13 05:53:19"
     }
 ]
