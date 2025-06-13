@@ -9,6 +9,8 @@ $eventos = json_decode($json, true);
 <head>
   <meta charset="UTF-8">
   <title>Eventos UniALFA</title>
+<!--bibliotea js, p/simplificar-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
@@ -21,10 +23,9 @@ $eventos = json_decode($json, true);
     <img src="../assets/img/banner1.jpg" alt="Banner 1">
     <img src="../assets/img/banner2.jpg" alt="Banner 2">
     <img src="../assets/img/banner3.jpg" alt="Banner 3">
+    <img src="../assets/img/banner4.jpg" alt="Banner 4">
   </div>
 </section>
-
-
 
 <!-- FILTROS + SEARCH -->
 <section class="filtros">

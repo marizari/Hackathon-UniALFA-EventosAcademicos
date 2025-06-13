@@ -2,7 +2,7 @@
     <header class="header">
         <nav id="navbar">
            <a href="#home" class="logo">
-            <img src="public/assets/img/logop.png" alt="Logo UniALFA" />
+            <img src="public/assets/img/logo.png" alt="Logo UniALFA" />
             </a>
 
             <ul id="nav_list">
@@ -20,10 +20,10 @@
                 </li>
             </ul>
 
-           <a href="../public/inscrever.php" class="btn-default">Inscreva-se!</a>
+            <button class="btn-default">Inscreva-se!</button>
 
 
-            <button>
+            <button id="mobile_btn">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </nav>
@@ -45,6 +45,8 @@
             </ul>
 
             <button class="btn-default">Inscreva-se!</button>
+
+            <script src="../assets/script.js"></script>
 
         </div>
     </header>

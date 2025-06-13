@@ -73,6 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8">
   <title>Inscrição - <?php echo $eventoSelecionado['titulo']; ?></title>
+  <!--bibliotea js, p/simplificar-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
@@ -80,32 +83,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <?php include('../templates/header.php'); ?>
 
   <main class="conteudo">
-    <h1>Inscrição no evento</h1>
+  <h1 class="titulo-inscricao"> Inscrição no evento:</h1>
 
-    <div class="evento-card">
-      <h2><?php echo $eventoSelecionado['titulo']; ?></h2>
-      <p><strong>Data:</strong> <?php echo $eventoSelecionado['data']; ?></p>
-      <p><strong>Palestrante:</strong> <?php echo $eventoSelecionado['palestrante']; ?></p>
-      <p><strong>Descrição:</strong> <?php echo $eventoSelecionado['descricao'] ?? 'Evento sem descrição.'; ?></p>
+  <div class="evento-card evento-inscricao-card">
+    <h2><?php echo $eventoSelecionado['titulo']; ?></h2>
+    <p><i class="fa-solid fa-calendar-days"></i> <?php echo $eventoSelecionado['data']; ?> às <?php echo $eventoSelecionado['hora'] ?? '00:00'; ?></p>
+    <p><i class="fa-solid fa-user-tie"></i> <?php echo $eventoSelecionado['palestrante']; ?></p>
+    <p><i class="fa-solid fa-map-marker-alt"></i> <?php echo $eventoSelecionado['local'] ?? 'Local a definir'; ?></p>
+    <p><i class="fa-solid fa-align-left"></i> <?php echo $eventoSelecionado['descricao'] ?? 'Evento sem descrição.'; ?></p>
+  </div>
+
+  <?php if (isset($mensagem)): ?>
+    <div class="mensagem-sucesso">
+      <?php echo $mensagem; ?>
     </div>
+  <?php endif; ?>
 
+  <form method="POST" class="form-inscricao">
+    <label for="nome">Nome completo:</label>
+    <input type="text" name="nome" id="nome" required placeholder="Digite seu nome completo">
 
-    <?php if (isset($mensagem)): ?>
-      <p style="color: green; font-weight: bold;"><?php echo $mensagem; ?></p>
-    <?php endif; ?>
+    <label for="ra">RA (matrícula):</label>
+    <input type="text" name="ra" id="ra" required placeholder="Ex: 2023123456">
 
-    <form method="POST" class="form-inscricao">
-      <label for="nome">Nome completo:</label><br>
-      <input type="text" name="nome" id="nome" required><br><br>
+    <button type="submit">Confirmar Inscrição</button>
+  </form>
 
-      <label for="ra">RA (matrícula):</label><br>
-      <input type="text" name="ra" id="ra" required><br><br>
-
-      <button type="submit">Confirmar Inscrição</button>
-    </form>
-
-    <p><a href="index.php">← Voltar à lista de eventos</a></p>
-  </main>
+  <div class="voltar-centro">
+    <a href="index.php" class="botao-voltar">← Voltar à lista de eventos</a>
+  </div>
+</main>
 
   <?php include('../templates/footer.php'); ?>
 

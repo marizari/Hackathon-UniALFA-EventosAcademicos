@@ -2,14 +2,14 @@
   {
     "id": 1,
     "titulo": "Como ser Dev e não surtar",
-    "descricao": "Uma conversa real sobre os desafios da área de tecnologia.",
+    "descricao": "Uma conversa real sobre os desafios da área de tecnologia. E coo lidar com o mundo tech",
     "tipo": "Workshop",
     "data": "2025-06-22",
     "hora": "19:00",
     "duracao": "2h",
     "local": "Auditório Central",
-    "palestrante": "João Silva",
-    "foto": "joao.jpg"
+    "palestrante": "Alex Morgado",
+    "foto": ""
   },
 
   {
@@ -21,7 +21,7 @@
     "hora": "20:30",
     "duracao": "2h",
     "local": "Sala 204",
-    "palestrante": "Maria Souza",
-    "foto": "maria.jpg"
+    "palestrante": "Rafael algum nome",
+    "foto": "rafael.jpg"
   }
 ]
