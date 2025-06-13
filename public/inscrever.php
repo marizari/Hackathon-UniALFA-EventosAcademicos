@@ -66,11 +66,12 @@ if (!$eventoSelecionado) {
 <head>
   <meta charset="UTF-8">
   <title>Inscrição - <?php echo $eventoSelecionado['titulo']; ?></title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <?php include ('templates/header.php'); ?>
-    
+    <?php include ('../templates/header.php'); ?>
+
   <h1>Inscrição no evento: <?php echo $eventoSelecionado['titulo']; ?></h1>
   <p><strong>Data:</strong> <?php echo $eventoSelecionado['data']; ?></p>
   <p><strong>Palestrante:</strong> <?php echo $eventoSelecionado['palestrante']; ?></p>

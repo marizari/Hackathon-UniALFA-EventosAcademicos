@@ -24,6 +24,25 @@
             <button>
                 <i class="fa-solid fa-bars"></i>
             </button>
-
         </nav>
+
+        <div id="mobile_menu">
+            <ul id="mobile_nav_list">
+                <li class="nav-item">
+                   <a href="#home">Início</a> 
+                </li>
+                <li class="nav-item">
+                   <a href="#eventos">Eventos</a> 
+                </li>
+                <li class="nav-item">
+                   <a href="#certificados">Certificados</a> 
+                </li>
+                <li class="nav-item">
+                   <a href="#portifolio">Portifólio</a> 
+                </li>
+            </ul>
+            
+            <button class="btn-default">Inscreva-se!</button>
+
+        </div>
     </header>
