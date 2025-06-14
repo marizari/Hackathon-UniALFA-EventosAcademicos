@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Aluno.init({
+  Aluno.init({ 
     nome: DataTypes.STRING,
     ra: DataTypes.STRING,
     email: DataTypes.STRING
