@@ -4,7 +4,7 @@ import { z } from 'zod'
 
 const routes = Router();
 
-routes.get('/alunos', async (req, res) => {
+routes.get('/', async (req, res) => {
   try {
     const alunos = await knex('alunos').select('*');
     res.json(alunos);
@@ -14,7 +14,7 @@ routes.get('/alunos', async (req, res) => {
 });
 
 
-routes.post('/alunos', async (req, res) => {
+routes.post('/', async (req, res) => {
   const registerBodySchema = z.object({
     nome: z.string(),
     email: z.string().email(),
