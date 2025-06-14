@@ -28,5 +28,11 @@
         "nome": "Maria",
         "ra": "240017",
         "data_inscricao": "2025-06-14 03:25:47"
+    },
+    {
+        "evento_id": "4",
+        "nome": "Maria",
+        "ra": "240017",
+        "data_inscricao": "2025-06-14 21:59:12"
     }
 ]
