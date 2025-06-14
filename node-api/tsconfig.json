@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",                   // Versão do JavaScript gerado
+    "module": "CommonJS",                 // Módulo para Node.js
+    "rootDir": "./",                     // Raiz do projeto para compilar
+    "outDir": "./dist",                   // Pasta onde o JS compilado vai para
+    "esModuleInterop": true,             // Para importar módulos CommonJS com import
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,                      // Ativa várias checagens rigorosas
+    "skipLibCheck": true                 // Ignorar checagem de libs (pra acelerar)
+  },
+  "include": ["./**/*.ts"],              // Compilar todos os arquivos TS do projeto
+  "exclude": ["node_modules", "dist"]   // Ignorar essas pastas
+}
