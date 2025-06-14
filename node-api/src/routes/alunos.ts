@@ -13,26 +13,51 @@ routes.get('/', async (req, res) => {
   }
 });
 
+routes.get('/eventos-com-alunos', async (req, res) => {
+  try {
+
+    const eventos = await knex('eventos').select('*');
+
+    
+    const alunos = await knex('alunos')
+      .select('name', 'ra', 'evento_id');
+
+    
+    const eventosComAlunos = eventos.map(evento => {
+      return {
+        ...evento,
+        alunos: alunos.filter(aluno => aluno.evento_id === evento.id)
+      };
+    });
+
+    res.json(eventosComAlunos);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensagem: 'Erro ao buscar eventos com alunos' });
+  }
+});
+
+
 
 routes.post('/', async (req, res) => {
   const registerBodySchema = z.object({
-    nome: z.string(),
+    name: z.string(),
     email: z.string().email(),
-    senha: z.string(),
-    ra: z.string().min(2),
+    ra: z.number().min(2),
     evento_id: z.number() 
   });
 
   try {
-    const { nome, email, senha, ra, evento_id } = registerBodySchema.parse(req.body);
+    const { name, email, ra, evento_id } = registerBodySchema.parse(req.body);
 
-    // Aqui valida se o evento existe no banco
+    
     const eventoExiste = await knex('eventos').where({ id: evento_id }).first();
     if (!eventoExiste) {
      res.status(400).json({ mensagem: 'Evento não encontrado' });
     }
 
-    await knex('alunos').insert({ nome, email, senha, ra, evento_id });
+    await knex('alunos').insert({ name, email, ra, evento_id });
 
     res.status(201).json({ mensagem: 'Aluno cadastrado com sucesso!' });
   } catch (error) {
