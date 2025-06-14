@@ -9,7 +9,7 @@
     "duracao": "2h",
     "local": "Auditório Central",
     "palestrante": "Alex Morgado",
-    "foto": ""
+    "foto": "assets/img/profAlex.jpeg"
   },
 
   {
@@ -23,5 +23,98 @@
     "local": "Sala 204",
     "palestrante": "Rafael algum nome",
     "foto": "rafael.jpg"
+  },
+
+  {
+    "id": 3,
+    "titulo": "Inteligência Artificial e o Futuro",
+    "descricao": "Explorando os impactos da IA no mercado de trabalho.",
+    "tipo": "Palestra",
+    "data": "2025-07-10",
+    "hora": "20:30",
+    "duracao": "2h",
+    "local": "Sala 204",
+    "palestrante": "Rafael algum nome",
+    "foto": "rafael.jpg"
+  },
+
+  {
+    "id": 4,
+    "titulo": "Inteligência Artificial e o Futuro",
+    "descricao": "Explorando os impactos da IA no mercado de trabalho.",
+    "tipo": "Palestra",
+    "data": "2025-07-10",
+    "hora": "20:30",
+    "duracao": "2h",
+    "local": "Sala 204",
+    "palestrante": "Rafael algum nome",
+    "foto": "rafael.jpg"
+  },
+
+  {
+    "id": 5,
+    "titulo": "Inteligência Artificial e o Futuro",
+    "descricao": "Explorando os impactos da IA no mercado de trabalho.",
+    "tipo": "Palestra",
+    "data": "2025-07-10",
+    "hora": "20:30",
+    "duracao": "2h",
+    "local": "Sala 204",
+    "palestrante": "Rafael algum nome",
+    "foto": "rafael.jpg"
+  },
+
+  {
+    "id": 6,
+    "titulo": "Inteligência Artificial e o Futuro",
+    "descricao": "Explorando os impactos da IA no mercado de trabalho.",
+    "tipo": "Palestra",
+    "data": "2025-07-10",
+    "hora": "20:30",
+    "duracao": "2h",
+    "local": "Sala 204",
+    "palestrante": "Rafael algum nome",
+    "foto": "rafael.jpg"
+  },
+
+  {
+    "id": 7,
+    "titulo": "Inteligência Artificial e o Futuro",
+    "descricao": "Explorando os impactos da IA no mercado de trabalho.",
+    "tipo": "Palestra",
+    "data": "2025-07-10",
+    "hora": "20:30",
+    "duracao": "2h",
+    "local": "Sala 204",
+    "palestrante": "Rafael algum nome",
+    "foto": "rafael.jpg"
+  },
+
+  {
+    "id": 8,
+    "titulo": "Inteligência Artificial e o Futuro",
+    "descricao": "Explorando os impactos da IA no mercado de trabalho.",
+    "tipo": "Palestra",
+    "data": "2025-07-10",
+    "hora": "20:30",
+    "duracao": "2h",
+    "local": "Sala 204",
+    "palestrante": "Rafael algum nome",
+    "foto": "rafael.jpg"
+  },
+
+  {
+    "id": 9,
+    "titulo": "Inteligência Artificial e o Futuro",
+    "descricao": "Explorando os impactos da IA no mercado de trabalho.",
+    "tipo": "Palestra",
+    "data": "2025-07-10",
+    "hora": "20:30",
+    "duracao": "2h",
+    "local": "Sala 204",
+    "palestrante": "Rafael algum nome",
+    "foto": "rafael.jpg"
   }
+
+  
 ]

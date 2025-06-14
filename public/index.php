@@ -55,7 +55,7 @@ $eventos = json_decode($json, true);
 
     <!-- IMAGEM DO PALESTRANTE -->
     <div class="evento-imagem">
-      <img src="../assets/img/<?php echo $evento['foto']; ?>" alt="Foto de <?php echo $evento['palestrante']; ?>">
+      <img src="../assets/img/ <?php echo $evento['foto']; ?>" alt="Foto de <?php echo $evento['palestrante']; ?>">
     </div>
 
     <!-- INFORMAÇÕES -->

@@ -4,5 +4,29 @@
         "nome": "d",
         "ra": "d",
         "data_inscricao": "2025-06-14 01:33:44"
+    },
+    {
+        "evento_id": "2",
+        "nome": "Maria",
+        "ra": "240017",
+        "data_inscricao": "2025-06-14 02:16:12"
+    },
+    {
+        "evento_id": "2",
+        "nome": "Maria",
+        "ra": "240017",
+        "data_inscricao": "2025-06-14 03:25:29"
+    },
+    {
+        "evento_id": "2",
+        "nome": "Maria",
+        "ra": "240017",
+        "data_inscricao": "2025-06-14 03:25:40"
+    },
+    {
+        "evento_id": "2",
+        "nome": "Maria",
+        "ra": "240017",
+        "data_inscricao": "2025-06-14 03:25:47"
     }
 ]
