@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $nome = $_POST['nome'];
   $ra = $_POST['ra'];
 
-   // Criar um array com os dados do aluno
+  // Criar um array com os dados do aluno
   $novaInscricao = [
     'evento_id' => $id,
     'nome' => $nome,
@@ -49,22 +49,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $inscricoes = [];
   }
 
-  // Verifica se já existe o arquivo com inscrições
-  $arquivo = 'inscricoes.json';
-  if (file_exists($arquivo)) {
-    $conteudo = file_get_contents($arquivo);
-    $inscricoes = json_decode($conteudo, true);
-  } else {
-    $inscricoes = [];
+  // VALIDAÇÃO: Verifica se já existe inscrição para o mesmo RA no mesmo evento
+  $jaInscrito = false;
+  foreach ($inscricoes as $inscricao) {
+    if ($inscricao['evento_id'] == $id && $inscricao['ra'] === $ra) {
+      $jaInscrito = true;
+      break;
+    }
   }
 
-  // Adiciona a nova inscrição
-  $inscricoes[] = $novaInscricao;
+  if ($jaInscrito) {
+    $mensagem = "Você já está inscrito neste evento com esse RA.";
+  } else {
+    // Adiciona a nova inscrição
+    $inscricoes[] = $novaInscricao;
 
     // Salva de volta no arquivo
-  file_put_contents($arquivo, json_encode($inscricoes, JSON_PRETTY_PRINT));
+    file_put_contents($arquivo, json_encode($inscricoes, JSON_PRETTY_PRINT));
 
-  $mensagem = "Inscrição realizada com sucesso!";
+    $mensagem = "Inscrição realizada com sucesso!";
+  }
 }
 ?>
 
@@ -118,4 +122,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </body>
 </html>
-

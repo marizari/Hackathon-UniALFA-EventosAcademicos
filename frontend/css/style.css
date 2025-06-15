@@ -1097,4 +1097,59 @@ footer .credits { margin-top: 8px; font-size: 0.9rem; color: #777; }
 }
 
 
+/* Estilo para o link botão "Inscreva-se" dentro do card */
+.evento-info a {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  margin-top: 1rem;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+  user-select: none;
+}
+
+.evento-info a:hover,
+.evento-info a:focus {
+  background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  outline: none;
+}
+
+.evento-info a:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+/* Mensagem de sucesso */
+.mensagem-sucesso {
+  background-color: #d4edda; /* verde claro suave */
+  color: #155724; /* verde escuro */
+  border: 1px solid #c3e6cb;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  margin: 1rem 0;
+  box-shadow: 0 4px 8px rgba(21, 87, 36, 0.3);
+  text-align: center;
+}
+
+/* Mensagem de erro */
+.mensagem-erro {
+  background-color: #f8d7da; /* vermelho claro suave */
+  color: #721c24; /* vermelho escuro */
+  border: 1px solid #f5c6cb;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  margin: 1rem 0;
+  box-shadow: 0 4px 8px rgba(114, 28, 36, 0.3);
+  text-align: center;
+}
+
+
 
