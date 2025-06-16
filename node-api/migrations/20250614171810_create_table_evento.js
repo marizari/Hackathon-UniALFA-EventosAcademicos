@@ -8,6 +8,7 @@ exports.up = function (knex) {
         table.string("name").notNull();
         table.string("descricao").notNull()
         table.date("data").notNull();
+        table.string("local").notNull();
     }))
 };
 

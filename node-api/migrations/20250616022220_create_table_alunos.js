@@ -7,7 +7,7 @@ exports.up = function (knex) {
     table.increments("id").primary();
     table.string("name").notNull();
     table.string("email").notNull()
-    table.integer("ra").notNull();
+    table.integer("cpf").notNull();
     table.string("password").notNullable(); 
     table.integer('evento_id').unsigned().references('id').inTable('eventos');
 

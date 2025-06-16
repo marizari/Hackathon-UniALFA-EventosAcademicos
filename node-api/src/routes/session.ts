@@ -11,13 +11,13 @@ router.post('/', async (req, res) => {
     const registerBodySchema = z.object({
         name: z.string(),
         email: z.string().email(),
-        ra: z.number().min(2),
+        cpf: z.number().min(2),
         password: z.string().min(6),
         evento_id: z.number()
     });
 
     try {
-        const { name, email, ra, password, evento_id } = registerBodySchema.parse(req.body);
+        const { name, email, cpf, password, evento_id } = registerBodySchema.parse(req.body);
 
         const eventoExiste = await knex('eventos').where({ id: evento_id }).first();
         if (!eventoExiste) {
@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
 
         const senhaCriptografada = await hash(password, 10);
 
-        await knex('alunos').insert({ name, email, ra, password: senhaCriptografada, evento_id });
+        await knex('alunos').insert({ name, email, cpf, password: senhaCriptografada, evento_id });
 
         res.status(201).json({ mensagem: 'Aluno cadastrado com sucesso!' });
     } catch (error) {

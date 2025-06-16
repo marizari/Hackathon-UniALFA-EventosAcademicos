@@ -20,7 +20,7 @@ routes.get('/eventos-com-alunos', async (req, res) => {
 
     
     const alunos = await knex('alunos')
-      .select('name', 'ra', 'evento_id');
+      .select('name', 'cpf', 'evento_id');
 
     
     const eventosComAlunos = eventos.map(evento => {
@@ -44,12 +44,12 @@ routes.post('/', async (req, res) => {
   const registerBodySchema = z.object({
     name: z.string(),
     email: z.string().email(),
-    ra: z.number().min(2),
+    cpf: z.number().min(2),
     evento_id: z.number() 
   });
 
   try {
-    const { name, email, ra, evento_id } = registerBodySchema.parse(req.body);
+    const { name, email, cpf, evento_id } = registerBodySchema.parse(req.body);
 
     
     const eventoExiste = await knex('eventos').where({ id: evento_id }).first();
@@ -57,7 +57,7 @@ routes.post('/', async (req, res) => {
      res.status(400).json({ mensagem: 'Evento não encontrado' });
     }
 
-    await knex('alunos').insert({ name, email, ra, evento_id });
+    await knex('alunos').insert({ name, email, cpf, evento_id });
 
     res.status(201).json({ mensagem: 'Aluno cadastrado com sucesso!' });
   } catch (error) {
