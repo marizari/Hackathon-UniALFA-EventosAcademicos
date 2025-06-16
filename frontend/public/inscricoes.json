@@ -22,5 +22,23 @@
         "nome": "MARIA EDUARDA PACHECO DELAZARI",
         "ra": "2400175",
         "data_inscricao": "2025-06-15 08:07:27"
+    },
+    {
+        "evento_id": "1",
+        "nome": "asdas",
+        "ra": null,
+        "data_inscricao": "2025-06-16 18:47:05"
+    },
+    {
+        "evento_id": "1",
+        "nome": "Maria Eduarda",
+        "ra": "24001",
+        "data_inscricao": "2025-06-16 18:47:09"
+    },
+    {
+        "evento_id": "1",
+        "nome": "s",
+        "cpf": null,
+        "data_inscricao": "2025-06-16 18:51:02"
     }
 ]

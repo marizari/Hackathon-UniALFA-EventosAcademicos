@@ -30,13 +30,14 @@ if (!$eventoSelecionado) {
 // Se for POST, salva os dados
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $nome = $_POST['nome'];
-  $ra = $_POST['ra'];
+  $cpf = $_POST['cpf'];
+  $email = $_POST['email'];
 
   // Criar um array com os dados do aluno
   $novaInscricao = [
     'evento_id' => $id,
     'nome' => $nome,
-    'ra' => $ra,
+    'cpf' => $ra,
     'data_inscricao' => date('Y-m-d H:i:s')
   ];
 
@@ -52,14 +53,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // VALIDAÇÃO: Verifica se já existe inscrição para o mesmo RA no mesmo evento
   $jaInscrito = false;
   foreach ($inscricoes as $inscricao) {
-    if ($inscricao['evento_id'] == $id && $inscricao['ra'] === $ra) {
+    if ($inscricao['evento_id'] == $id && $inscricao['cpf'] === $cpf) {
       $jaInscrito = true;
       break;
     }
   }
 
   if ($jaInscrito) {
-    $mensagem = "Você já está inscrito neste evento com esse RA.";
+    $mensagem = "Você já está inscrito neste evento com esse CPF.";
   } else {
     // Adiciona a nova inscrição
     $inscricoes[] = $novaInscricao;
@@ -107,8 +108,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label for="nome">Nome completo:</label>
     <input type="text" name="nome" id="nome" required placeholder="Digite seu nome completo">
 
-    <label for="ra">RA (matrícula):</label>
-    <input type="text" name="ra" id="ra" required placeholder="Ex: 2023123456">
+    <label for="cpf">CPF:</label>
+    <input type="text" name="cpf" id="cpf" required placeholder="Ex: 2023123456">
+
+    <label for="cpf">Seu melhor email:</label>
+    <input type="text" name="email" id="email" required placeholder="Ex: unialfaEventos@gmail.com">
 
     <button type="submit">Confirmar Inscrição</button>
   </form>
