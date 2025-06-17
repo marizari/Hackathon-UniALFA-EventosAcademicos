@@ -8,16 +8,15 @@ routes.get('/:id', async (req, res) => {
   const alunoId = req.params.id;
 
   try {
-    const aluno = await knex('alunos')
-      .join('eventos', 'alunos.evento_id', 'eventos.id')
-      .leftJoin('palestrantes', 'eventos.id', 'palestrantes.evento_id')
+    const aluno = await knex('aluno')
+      .join('evento', 'aluno.evento_id', 'evento.id')
+      .leftJoin('palestrantes', 'eventos.id', 'palestrante.evento_id')
       .where('alunos.id', alunoId)
       .select(
-        'alunos.name as aluno_nome',
-        'alunos.cpf',
-        'eventos.name as evento_nome',
-        'palestrantes.name as palestrante_nome',
-        'palestrantes.descricao as palestrante_descr'
+        'aluno.nome as aluno_nome',
+        'aluno.matricula_ra',
+        'evento.nome as evento_nome',
+        'palestrante.nome as palestrante_nome',
       )
       .first();
 
@@ -39,7 +38,7 @@ routes.get('/:id', async (req, res) => {
 
     doc.fontSize(25).text('CERTIFICADO DE PARTICIPAÇÃO', { align: 'center' });
     doc.moveDown();
-    doc.fontSize(16).text(`Nós da UniAlfa certificamos que ${aluno.aluno_nome} (CPF: ${aluno.cpf})`);
+    doc.fontSize(16).text(`Nós da UniAlfa certificamos que ${aluno.aluno_nome} (CPF: ${aluno.matricula_ra})`);
     doc.text(`participou do evento "${aluno.evento_nome}",`);
     doc.text(`com a palestra ministrada por ${aluno.palestrante_nome}.`);
     doc.moveDown();

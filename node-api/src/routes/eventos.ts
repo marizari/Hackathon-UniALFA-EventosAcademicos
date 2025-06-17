@@ -5,8 +5,8 @@ const routes = Router();
 
 routes.get('/', async (req, res) => {
   try {
-    const eventos = await knex('eventos').select('*');
-    res.json(eventos);
+    const evento = await knex('evento').select('*');
+    res.json(evento);
   } catch (error) {
     res.status(500).json({ mensagem: 'Erro ao buscar eventos' });
   }

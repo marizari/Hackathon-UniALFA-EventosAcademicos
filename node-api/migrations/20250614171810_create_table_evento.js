@@ -3,12 +3,11 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-    return knex.schema.createTable("eventos", (table => {
-        table.increments("id").primary();
-        table.string("name").notNull();
+    return knex.schema.createTable("evento", (table => {
+        table.increments("evento_id").primary();
+        table.string("nome").notNull();
         table.string("descricao").notNull()
         table.date("data").notNull();
-        table.string("local").notNull();
     }))
 };
 
@@ -17,6 +16,6 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-    return knex.schema.dropTable("eventos");
+    return knex.schema.dropTable("evento");
 
 };
