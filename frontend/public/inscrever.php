@@ -1,128 +1,53 @@
 <?php
+require_once '../src/api.php';
 
-// Verifica se veio o ID via GET
-// Verifica se veio um ID de evento
-if (!isset($_GET['id'])) {
-  echo "Evento não encontrado.";
-  exit;
-}
-
-$id = $_GET['id'];
-
-// Lê os eventos do JSON
-$json = file_get_contents('eventos.json');
-$eventos = json_decode($json, true);
-
-// Procura o evento
-$eventoSelecionado = null;
-foreach ($eventos as $evento) {
-  if ($evento['id'] == $id) {
-    $eventoSelecionado = $evento;
-    break;
-  }
-}
-
-if (!$eventoSelecionado) {
-  echo "Evento inválido.";
-  exit;
-}
-
-// Se for POST, salva os dados
+$mensagem = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $nome = $_POST['nome'];
-  $cpf = $_POST['cpf'];
-  $email = $_POST['email'];
+    $dados = [
+        'name' => $_POST['name'],
+        'email' => $_POST['email'],
+        'cpf' => (int) $_POST['cpf'],
+        'evento_id' => (int) $_POST['evento_id']
+    ];
 
-  // Criar um array com os dados do aluno
-  $novaInscricao = [
-    'evento_id' => $id,
-    'nome' => $nome,
-    'cpf' => $ra,
-    'data_inscricao' => date('Y-m-d H:i:s')
-  ];
+    $resposta = fazerRequisicao('http://localhost:3002/alunos', 'POST', $dados);
 
-  $arquivo = 'inscricoes.json';
-
-  if (file_exists($arquivo)) {
-    $conteudo = file_get_contents($arquivo);
-    $inscricoes = json_decode($conteudo, true);
-  } else {
-    $inscricoes = [];
-  }
-
-  // VALIDAÇÃO: Verifica se já existe inscrição para o mesmo RA no mesmo evento
-  $jaInscrito = false;
-  foreach ($inscricoes as $inscricao) {
-    if ($inscricao['evento_id'] == $id && $inscricao['cpf'] === $cpf) {
-      $jaInscrito = true;
-      break;
+    if (isset($resposta['mensagem'])) {
+        $mensagem = $resposta['mensagem'];
     }
-  }
-
-  if ($jaInscrito) {
-    $mensagem = "Você já está inscrito neste evento com esse CPF.";
-  } else {
-    // Adiciona a nova inscrição
-    $inscricoes[] = $novaInscricao;
-
-    // Salva de volta no arquivo
-    file_put_contents($arquivo, json_encode($inscricoes, JSON_PRETTY_PRINT));
-
-    $mensagem = "Inscrição realizada com sucesso!";
-  }
 }
+
+$evento_id = $_GET['evento_id'] ?? '';
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Inscrição - <?php echo $eventoSelecionado['titulo']; ?></title>
-  <!--bibliotea js, p/simplificar-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <title>Inscrição no Evento</title>
 </head>
 <body>
+    <h1>Formulário de Inscrição</h1>
 
-  <?php include('../templates/header.php'); ?>
+    <?php if ($mensagem): ?>
+        <p><strong><?= htmlspecialchars($mensagem) ?></strong></p>
+    <?php endif; ?>
 
-  <main class="conteudo">
-  <h1 class="titulo-inscricao"> Inscrição no evento:</h1>
+    <form method="POST">
+        <input type="hidden" name="evento_id" value="<?= htmlspecialchars($evento_id) ?>">
+        <label>Nome:</label><br>
+        <input type="text" name="name" required><br><br>
 
-  <div class="evento-card evento-inscricao-card">
-    <h2><?php echo $eventoSelecionado['titulo']; ?></h2>
-    <p><i class="fa-solid fa-calendar-days"></i> <?php echo $eventoSelecionado['data']; ?> às <?php echo $eventoSelecionado['hora'] ?? '00:00'; ?></p>
-    <p><i class="fa-solid fa-user-tie"></i> <?php echo $eventoSelecionado['palestrante']; ?></p>
-    <p><i class="fa-solid fa-map-marker-alt"></i> <?php echo $eventoSelecionado['local'] ?? 'Local a definir'; ?></p>
-    <p><i class="fa-solid fa-align-left"></i> <?php echo $eventoSelecionado['descricao'] ?? 'Evento sem descrição.'; ?></p>
-  </div>
+        <label>Email:</label><br>
+        <input type="email" name="email" required><br><br>
 
-  <?php if (isset($mensagem)): ?>
-    <div class="mensagem-sucesso">
-      <?php echo $mensagem; ?>
-    </div>
-  <?php endif; ?>
+        <label>CPF:</label><br>
+        <input type="text" name="cpf" required><br><br>
 
-  <form method="POST" class="form-inscricao">
-    <label for="nome">Nome completo:</label>
-    <input type="text" name="nome" id="nome" required placeholder="Digite seu nome completo">
+        <button type="submit">Inscrever</button>
+    </form>
 
-    <label for="cpf">CPF:</label>
-    <input type="text" name="cpf" id="cpf" required placeholder="Ex: 2023123456">
-
-    <label for="cpf">Seu melhor email:</label>
-    <input type="text" name="email" id="email" required placeholder="Ex: unialfaEventos@gmail.com">
-
-    <button type="submit">Confirmar Inscrição</button>
-  </form>
-
-  <div class="voltar-centro">
-    <a href="index.php" class="botao-voltar">← Voltar à lista de eventos</a>
-  </div>
-</main>
-
-  <?php include('../templates/footer.php'); ?>
-
+    <br>
+    <a href="index.php">← Voltar para eventos</a>
 </body>
 </html>

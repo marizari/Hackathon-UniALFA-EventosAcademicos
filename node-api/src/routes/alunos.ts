@@ -54,7 +54,8 @@ routes.post('/', async (req, res) => {
     
     const eventoExiste = await knex('eventos').where({ id: evento_id }).first();
     if (!eventoExiste) {
-     res.status(400).json({ mensagem: 'Evento não encontrado' });
+      res.status(400).json({ mensagem: 'Evento não encontrado' });
+      return
     }
 
     await knex('alunos').insert({ name, email, cpf, evento_id });

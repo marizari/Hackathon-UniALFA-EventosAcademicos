@@ -23,6 +23,7 @@ routes.get('/:id', async (req, res) => {
 
     if (!aluno) {
        res.status(404).json({ mensagem: 'Aluno não encontrado!' });
+       return
     }
 
     const doc = new PDFDocument();
